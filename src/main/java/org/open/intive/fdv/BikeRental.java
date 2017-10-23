@@ -17,9 +17,14 @@ public abstract class BikeRental {
      * 
      * @return the cost of having rented the bike
      */
-    abstract int getCharge();
+    abstract int getCost();
 
-    void rent(int time) {
+    //@Override
+    int getCharge() {
+        return this.getRentTime() * getCost();
+    }
+    
+    void setRentTime(int time) {
         this.rentTime = time;
     }
 

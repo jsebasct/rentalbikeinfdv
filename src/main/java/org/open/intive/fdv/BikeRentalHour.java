@@ -14,8 +14,8 @@ public class BikeRentalHour extends BikeRental {
     private static final int CHARGE_PER_HOUR = 5;
     
     @Override
-    int getCharge() {
-        return this.getRentTime() * CHARGE_PER_HOUR;
+    int getCost() {
+        return CHARGE_PER_HOUR;
     }
     
 }

@@ -34,13 +34,19 @@ public class AppTest
     public void testHourRent()
     {
         BikeRental app = new BikeRentalHour();
-        app.rent(5);
+        app.setRentTime(5);
         assertEquals(25, app.getCharge());
     }
     
     public void testDayRent() {
         BikeRental app = new BikeRentalDay();
-        app.rent(5);
+        app.setRentTime(5);
         assertEquals(100, app.getCharge());
+    }
+    
+    public void testWeekRent() {
+        BikeRental app = new BikeRentalWeek();
+        app.setRentTime(5);
+        assertEquals(300, app.getCharge());
     }
 }
