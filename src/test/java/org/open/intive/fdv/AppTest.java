@@ -31,8 +31,10 @@ public class AppTest
     /**
      * Rigourous Test :-)
      */
-    public void testApp()
+    public void testHourRent()
     {
-        assertTrue( true );
+        BikeRental app = new BikeRentalHour();
+        app.rent(5);
+        assertEquals(25, app.getCharge());
     }
 }
