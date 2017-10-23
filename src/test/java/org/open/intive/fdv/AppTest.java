@@ -37,4 +37,10 @@ public class AppTest
         app.rent(5);
         assertEquals(25, app.getCharge());
     }
+    
+    public void testDayRent() {
+        BikeRental app = new BikeRentalDay();
+        app.rent(5);
+        assertEquals(100, app.getCharge());
+    }
 }

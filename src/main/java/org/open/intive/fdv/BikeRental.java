@@ -6,13 +6,17 @@
 package org.open.intive.fdv;
 
 /**
- *
+ * 
  * @author jscruz
  */
 public abstract class BikeRental {
 
     private int rentTime;
 
+    /**
+     * 
+     * @return the cost of having rented the bike
+     */
     abstract int getCharge();
 
     void rent(int time) {
