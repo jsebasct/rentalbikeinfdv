@@ -9,17 +9,8 @@ package org.open.intive.fdv;
  *
  * @author jscruz
  */
-public class BikeRentalHour extends BikeRental {
-
-    private static final int CHARGE_PER_HOUR = 5;
-
-    public BikeRentalHour(int time) {
-        super(time);
+public class BikeRentalNotEnoughData extends Exception {
+    public BikeRentalNotEnoughData() {
+        super("Not Enough Rentals added");
     }
-    
-    @Override
-    int getCharge() {
-        return CHARGE_PER_HOUR;
-    }
-    
 }

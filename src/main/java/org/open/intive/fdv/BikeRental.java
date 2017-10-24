@@ -11,24 +11,23 @@ package org.open.intive.fdv;
  */
 public abstract class BikeRental {
 
-    private int rentTime;
+    private final int rentTime;
 
-    /**
-     * 
-     * @return the cost of having rented the bike
-     */
-    abstract int getCost();
-
-    //@Override
-    int getCharge() {
-        return this.getRentTime() * getCost();
-    }
-    
-    void setRentTime(int time) {
+    public BikeRental(int time) {
         this.rentTime = time;
     }
+    
+    /**
+     * 
+     * @return the cost of having rented the bike per unit
+     */
+    abstract int getCharge();
 
-    public int getRentTime() {
+    int getTotalCost() throws BikeRentalNotEnoughData {
+        return this.getRentTime() * getCharge();
+    }
+
+    private int getRentTime() {
         return this.rentTime;
     }
 }

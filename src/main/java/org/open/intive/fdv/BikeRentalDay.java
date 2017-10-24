@@ -12,9 +12,13 @@ package org.open.intive.fdv;
 public class BikeRentalDay extends BikeRental {
 
     private static final int CHARGE_PER_DAY = 20;
+
+    public BikeRentalDay(int time) {
+        super(time);
+    }
     
     @Override
-    int getCost() {
+    int getCharge() {
         return CHARGE_PER_DAY;
     }
     

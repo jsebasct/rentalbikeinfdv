@@ -13,8 +13,12 @@ public class BikeRentalWeek extends BikeRental {
 
     private static final int CHARGE_PER_WEEK = 60;
 
+    public BikeRentalWeek(int time) {
+        super(time);
+    }
+
     @Override
-    int getCost() {
+    int getCharge() {
         return CHARGE_PER_WEEK;
     }
     

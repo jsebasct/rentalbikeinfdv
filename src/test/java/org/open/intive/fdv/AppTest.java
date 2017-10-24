@@ -1,52 +1,66 @@
 package org.open.intive.fdv;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
+public class AppTest
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
 
     /**
-     * @return the suite of tests being tested
+     * Rental by hour, charging $5 per hour
+     * @throws java.lang.Exception
      */
-    public static Test suite()
+    @Test
+    public void testHourRent() throws Exception
     {
-        return new TestSuite( AppTest.class );
+        BikeRental app = new BikeRentalHour(5);
+        assertEquals(25, app.getTotalCost());
     }
-
+    
     /**
-     * Rigourous Test :-)
+     * Rental by day, charging $20 a day
      */
-    public void testHourRent()
-    {
-        BikeRental app = new BikeRentalHour();
-        app.setRentTime(5);
-        assertEquals(25, app.getCharge());
+    @Test
+    public void testDayRent() throws Exception {
+        BikeRental app = new BikeRentalDay(5);
+        assertEquals(100, app.getTotalCost());
     }
     
-    public void testDayRent() {
-        BikeRental app = new BikeRentalDay();
-        app.setRentTime(5);
-        assertEquals(100, app.getCharge());
+    /**
+     * Rental by week, changing $60 a week
+     */
+    @Test
+    public void testWeekRent() throws Exception {
+        BikeRental app = new BikeRentalWeek(5);
+        assertEquals(300, app.getTotalCost());
     }
     
-    public void testWeekRent() {
-        BikeRental app = new BikeRentalWeek();
-        app.setRentTime(5);
-        assertEquals(300, app.getCharge());
+    /**
+     * 4. Family Rental, is a promotion that can include from 3 to 5 Rentals 
+     * (of any type) with a discount of 30% of the total price
+     */
+    @Test
+    public void testFamilyRent() throws Exception {
+        BikeRentalFamily app = new BikeRentalFamily(3);
+        app.addRental(new BikeRentalWeek(5));
+        app.addRental(new BikeRentalDay(5));
+        app.addRental(new BikeRentalHour(5));
+        
+        assertFalse(app.addRental(new BikeRentalHour(5)));
+        //TODO: round behavior ?
+        assertEquals(297, app.getTotalCost());
+    }
+    
+    @Test(expected=BikeRentalNotEnoughData.class)
+    public void testFamilyRentNotEnough() throws Exception {
+        BikeRentalFamily app = new BikeRentalFamily(3);
+        app.addRental(new BikeRentalWeek(5));
+        app.addRental(new BikeRentalDay(5));
+        //TODO: round behavior ?
+        assertEquals(297, app.getTotalCost());
     }
 }
